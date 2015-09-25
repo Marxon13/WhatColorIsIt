@@ -67,21 +67,6 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
     */
     private var secondaryFont: NSFont = NSFont.monospacedDigitSystemFontOfSize(0.0, weight: NSFontWeightUltraLight)
     
-    /**
-    Whether or not to draw inverted.
-    */
-    private var inverted: Bool = false
-    
-    /**
-    What to display on the main label.
-    */
-    private var mainLabelDisplayValue: WhatColorIsItLabelDisplayValue = WhatColorIsItLabelDisplayValue.Time
-    
-    /**
-    What to display on the secondary label.
-    */
-    private var secondaryLabelDisplayValue: WhatColorIsItLabelDisplayValue = WhatColorIsItLabelDisplayValue.Hex
-    
     //----------------------------
     // MARK: Initalization
     //----------------------------
@@ -123,10 +108,6 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
     }
     
     private func loadFromDefaults() {
-        // If each value is available.
-        mainLabelDisplayValue = defaults.mainLabelDisplayValue
-        secondaryLabelDisplayValue = defaults.secondaryLabelDisplayValue
-        inverted = defaults.inverted
         // Refresh the display.
         needsDisplay = true
     }
@@ -168,13 +149,13 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
         // Get the strings to display
         let hexString: String = hexTimeFormatter.stringFromDate(currentDate)
         let timeString: String = timeFormatter.stringFromDate(currentDate)
-        let mainString: String = mainLabelDisplayValue == .None ? "" : (mainLabelDisplayValue == .Hex ? hexString : timeString)
-        let secondaryString: String = secondaryLabelDisplayValue == .None ? "" : (secondaryLabelDisplayValue == .Hex ? hexString : timeString)
+        let mainString: String = defaults.mainLabelDisplayValue == .None ? "" : (defaults.mainLabelDisplayValue == .Hex ? hexString : timeString)
+        let secondaryString: String = defaults.secondaryLabelDisplayValue == .None ? "" : (defaults.secondaryLabelDisplayValue == .Hex ? hexString : timeString)
         
         // Set the colors to display
         let hexColor: NSColor = colorFromHexString(hexString)!
-        let textColor: NSColor = !inverted ? NSColor.whiteColor() : hexColor
-        let backgroundColor: NSColor = !inverted ? hexColor : NSColor.whiteColor()
+        let textColor: NSColor = !defaults.inverted ? NSColor.whiteColor() : hexColor
+        let backgroundColor: NSColor = !defaults.inverted ? hexColor : NSColor.whiteColor()
         
         // Draw the background
         backgroundColor.setFill()
@@ -187,7 +168,7 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
             NSForegroundColorAttributeName: textColor
         ]
         let mainSize: NSSize = (mainString as NSString).sizeWithAttributes(mainAttributes)
-        let mainRect: NSRect = secondaryLabelDisplayValue != .None ?
+        let mainRect: NSRect = defaults.secondaryLabelDisplayValue != .None ?
             NSMakeRect(
                 bounds.origin.x,
                 bounds.origin.y + (bounds.size.height / 2.0),
@@ -208,7 +189,7 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
             NSForegroundColorAttributeName: textColor
         ]
         let secondarySize: NSSize = (secondaryString as NSString).sizeWithAttributes(secondaryAttributes)
-        let secondaryRect: NSRect = mainLabelDisplayValue != .None ?
+        let secondaryRect: NSRect = defaults.mainLabelDisplayValue != .None ?
             NSMakeRect(
             bounds.origin.x,
             (bounds.size.height / 2.0) - mainSize.height,
