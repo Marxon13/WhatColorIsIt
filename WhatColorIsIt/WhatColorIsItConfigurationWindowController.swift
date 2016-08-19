@@ -96,7 +96,7 @@ class WhatColorIsItConfigurationWindowController: NSWindowController {
     // MARK: Actions
     //----------------------------
     
-    @IBAction func close(sender: AnyObject) {
+    @IBAction func close(_ sender: AnyObject) {
         // Close
         if let window = window {
             window.sheetParent?.endSheet(window, returnCode: NSModalResponseOK)

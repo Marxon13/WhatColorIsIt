@@ -65,7 +65,7 @@ class WhatColorIsItDefaults: NSObject {
     /**
     The defaults used to load and save the values to/from disk.
     */
-    private var screenSaverDefaults: ScreenSaverDefaults?
+    fileprivate var screenSaverDefaults: ScreenSaverDefaults?
     
     /**
     The defaults delegate.
@@ -75,7 +75,7 @@ class WhatColorIsItDefaults: NSObject {
     /**
     Whether or not to save the changes.
     */
-    private var saveChanges: Bool = true
+    fileprivate var saveChanges: Bool = true
     
     /**
     What the main label will display on the screen.
@@ -115,18 +115,18 @@ class WhatColorIsItDefaults: NSObject {
         revert()
         
         // Register for notifications
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "configurationDidChange:", name: WhatColorIsItConfigurationDidChangeNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WhatColorIsItDefaults.configurationDidChange(_:)), name: NSNotification.Name(rawValue: WhatColorIsItConfigurationDidChangeNotificationName), object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: WhatColorIsItConfigurationDidChangeNotificationName, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: WhatColorIsItConfigurationDidChangeNotificationName), object: nil)
     }
     
     //----------------------------
     // MARK: Actions
     //----------------------------
     
-    internal func configurationDidChange(notification: NSNotification) {
+    internal func configurationDidChange(_ notification: Notification) {
         // Load the values from defaults
         revert()
         // Notify the delegate
@@ -139,7 +139,7 @@ class WhatColorIsItDefaults: NSObject {
     Registers the default values.
     */
     func register() {
-        screenSaverDefaults?.registerDefaults([
+        screenSaverDefaults?.register(defaults: [
             WhatColorIsItMainDisplayValueKey: mainLabelDisplayValue.rawValue,
             WhatColorIsItSecondaryDisplayValueKey: secondaryLabelDisplayValue.rawValue,
             WhatColorIsItInvertedKey: inverted
@@ -152,9 +152,9 @@ class WhatColorIsItDefaults: NSObject {
     func save() {
         if saveChanges {
             // Save all parameters to defaults.
-            screenSaverDefaults?.setObject(mainLabelDisplayValue.rawValue, forKey: WhatColorIsItMainDisplayValueKey)
-            screenSaverDefaults?.setObject(secondaryLabelDisplayValue.rawValue, forKey: WhatColorIsItSecondaryDisplayValueKey)
-            screenSaverDefaults?.setBool(inverted, forKey: WhatColorIsItInvertedKey)
+            screenSaverDefaults?.set(mainLabelDisplayValue.rawValue, forKey: WhatColorIsItMainDisplayValueKey)
+            screenSaverDefaults?.set(secondaryLabelDisplayValue.rawValue, forKey: WhatColorIsItSecondaryDisplayValueKey)
+            screenSaverDefaults?.set(inverted, forKey: WhatColorIsItInvertedKey)
             notify()
         }
     }
@@ -165,17 +165,17 @@ class WhatColorIsItDefaults: NSObject {
     func revert() {
         saveChanges = false
         // Revert all changes to properties.
-        if let value: String = screenSaverDefaults?.stringForKey(WhatColorIsItMainDisplayValueKey) {
+        if let value: String = screenSaverDefaults?.string(forKey: WhatColorIsItMainDisplayValueKey) {
             if let type: WhatColorIsItLabelDisplayValue = WhatColorIsItLabelDisplayValue(rawValue: value) {
                 mainLabelDisplayValue = type
             }
         }
-        if let value: String = screenSaverDefaults?.stringForKey(WhatColorIsItSecondaryDisplayValueKey) {
+        if let value: String = screenSaverDefaults?.string(forKey: WhatColorIsItSecondaryDisplayValueKey) {
             if let type: WhatColorIsItLabelDisplayValue = WhatColorIsItLabelDisplayValue(rawValue: value) {
                 secondaryLabelDisplayValue = type
             }
         }
-        if let value: Bool = screenSaverDefaults?.boolForKey(WhatColorIsItInvertedKey) {
+        if let value: Bool = screenSaverDefaults?.bool(forKey: WhatColorIsItInvertedKey) {
             inverted = value
         }
         saveChanges = true
@@ -185,6 +185,6 @@ class WhatColorIsItDefaults: NSObject {
     Notifies the observers that the values changed.
     */
     func notify() {
-        NSNotificationCenter.defaultCenter().postNotificationName(WhatColorIsItConfigurationDidChangeNotificationName, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: WhatColorIsItConfigurationDidChangeNotificationName), object: nil)
     }
 }

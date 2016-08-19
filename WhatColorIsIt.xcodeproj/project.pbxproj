@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA0595651BB32ECE006A5DE0 /* WhatColorIsItView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595641BB32ECE006A5DE0 /* WhatColorIsItView.swift */; settings = {ASSET_TAGS = (); }; };
-		CA0595681BB32F12006A5DE0 /* WhatColorIsItDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595671BB32F12006A5DE0 /* WhatColorIsItDefaults.swift */; settings = {ASSET_TAGS = (); }; };
-		CA05956B1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595691BB32F92006A5DE0 /* WhatColorIsItConfigurationWindowController.swift */; settings = {ASSET_TAGS = (); }; };
-		CA05956C1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA05956A1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindow.xib */; settings = {ASSET_TAGS = (); }; };
+		CA0595651BB32ECE006A5DE0 /* WhatColorIsItView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595641BB32ECE006A5DE0 /* WhatColorIsItView.swift */; };
+		CA0595681BB32F12006A5DE0 /* WhatColorIsItDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595671BB32F12006A5DE0 /* WhatColorIsItDefaults.swift */; };
+		CA05956B1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595691BB32F92006A5DE0 /* WhatColorIsItConfigurationWindowController.swift */; };
+		CA05956C1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA05956A1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindow.xib */; };
 		CA59A5F51BB420500000831C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59A5F41BB420500000831C /* AppDelegate.swift */; };
 		CA59A5F71BB420500000831C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA59A5F61BB420500000831C /* Assets.xcassets */; };
 		CA59A5FA1BB420500000831C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA59A5F81BB420500000831C /* MainMenu.xib */; };
-		CA59A5FF1BB420610000831C /* WhatColorIsItView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595641BB32ECE006A5DE0 /* WhatColorIsItView.swift */; settings = {ASSET_TAGS = (); }; };
-		CA59A6001BB420610000831C /* WhatColorIsItDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595671BB32F12006A5DE0 /* WhatColorIsItDefaults.swift */; settings = {ASSET_TAGS = (); }; };
-		CA59A6011BB420610000831C /* WhatColorIsItConfigurationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595691BB32F92006A5DE0 /* WhatColorIsItConfigurationWindowController.swift */; settings = {ASSET_TAGS = (); }; };
-		CA59A6021BB420610000831C /* WhatColorIsItConfigurationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA05956A1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindow.xib */; settings = {ASSET_TAGS = (); }; };
-		CA59A6081BB574910000831C /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = CA59A6061BB574910000831C /* thumbnail.png */; settings = {ASSET_TAGS = (); }; };
-		CA59A6091BB574910000831C /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA59A6071BB574910000831C /* thumbnail@2x.png */; settings = {ASSET_TAGS = (); }; };
+		CA59A5FF1BB420610000831C /* WhatColorIsItView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595641BB32ECE006A5DE0 /* WhatColorIsItView.swift */; };
+		CA59A6001BB420610000831C /* WhatColorIsItDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595671BB32F12006A5DE0 /* WhatColorIsItDefaults.swift */; };
+		CA59A6011BB420610000831C /* WhatColorIsItConfigurationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595691BB32F92006A5DE0 /* WhatColorIsItConfigurationWindowController.swift */; };
+		CA59A6021BB420610000831C /* WhatColorIsItConfigurationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA05956A1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindow.xib */; };
+		CA59A6081BB574910000831C /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = CA59A6061BB574910000831C /* thumbnail.png */; };
+		CA59A6091BB574910000831C /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA59A6071BB574910000831C /* thumbnail@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,9 +175,11 @@
 				TargetAttributes = {
 					CA0595551BB32D7C006A5DE0 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					CA59A5F11BB420500000831C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -350,6 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonMcQuilkin.WhatColorIsIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -365,6 +368,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonMcQuilkin.WhatColorIsIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Release;
@@ -380,6 +384,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonMcQuilkin.WhatColorIsItDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -393,6 +398,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonMcQuilkin.WhatColorIsItDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -424,6 +430,7 @@
 				CA59A5FD1BB420500000831C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

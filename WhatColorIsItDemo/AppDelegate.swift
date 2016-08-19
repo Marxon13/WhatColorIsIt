@@ -15,9 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     @IBOutlet weak var window: NSWindow!
     
     let saverView: WhatColorIsItView = WhatColorIsItView()
-    var timer: NSTimer?
+    var timer: Timer?
     
-    @IBAction func showConfiguration(sender: NSObject!) {
+    @IBAction func showConfiguration(_ sender: NSObject!) {
         if saverView.hasConfigureSheet() {
             if let window = window {
                 window.beginSheet(saverView.configureSheet()!) { (result: NSModalResponse) -> Void in
@@ -30,24 +30,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     
     // MARK: - Private
     
-    func endSheet(sheet: NSWindow) {
+    func endSheet(_ sheet: NSWindow) {
         sheet.close()
     }
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Set the resizing mask of the screen saver
-        saverView.autoresizingMask = [NSAutoresizingMaskOptions.ViewWidthSizable, NSAutoresizingMaskOptions.ViewHeightSizable]
+        saverView.autoresizingMask = [NSAutoresizingMaskOptions.viewWidthSizable, NSAutoresizingMaskOptions.viewHeightSizable]
         // Add the view to the window
         saverView.frame = window.contentView!.bounds
         window.contentView!.addSubview(saverView)
         
         // Start animating the screen saver
         saverView.startAnimation()
-        timer = NSTimer(timeInterval: saverView.animationTimeInterval, target: saverView, selector: "animateOneFrame", userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+        timer = Timer(timeInterval: saverView.animationTimeInterval, target: saverView, selector: #selector(ScreenSaverView.animateOneFrame), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
     }
     
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 }

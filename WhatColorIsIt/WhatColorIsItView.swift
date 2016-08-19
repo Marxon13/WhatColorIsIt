@@ -2,7 +2,7 @@
 //  WhatColorIsItView.swift
 //  WhatColorIsIt
 //
-// Copyright (c) 2015 Brandon McQuilkin
+// Copyright (c) 2016 Brandon McQuilkin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -35,37 +35,37 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
     /**
     The defaults controller.
     */
-    private let defaults: WhatColorIsItDefaults = WhatColorIsItDefaults()
+    fileprivate let defaults: WhatColorIsItDefaults = WhatColorIsItDefaults()
     
     /**
     The date formatter that converts the current time to a hex string.
     */
-    private let hexTimeFormatter: NSDateFormatter = NSDateFormatter()
+    fileprivate let hexTimeFormatter: DateFormatter = DateFormatter()
     
     /**
     The date formatter that converts the current time to a string.
     */
-    private let timeFormatter: NSDateFormatter = NSDateFormatter()
+    fileprivate let timeFormatter: DateFormatter = DateFormatter()
     
     /**
     The current date.
     */
-    private var currentDate: NSDate = NSDate()
+    fileprivate var currentDate: Date = Date()
     
     /**
     The main font.
     */
-    private var mainFont: NSFont = NSFont.monospacedDigitSystemFontOfSize(0.0, weight: NSFontWeightUltraLight)
+    fileprivate var mainFont: NSFont = NSFont.monospacedDigitSystemFont(ofSize: 0.0, weight: NSFontWeightUltraLight)
     
     /**
     The paragraph style.
     */
-    private let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
+    fileprivate let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
     
     /**
     The secondary font.
     */
-    private var secondaryFont: NSFont = NSFont.monospacedDigitSystemFontOfSize(0.0, weight: NSFontWeightUltraLight)
+    fileprivate var secondaryFont: NSFont = NSFont.monospacedDigitSystemFont(ofSize: 0.0, weight: NSFontWeightUltraLight)
     
     //----------------------------
     // MARK: Initalization
@@ -93,7 +93,7 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
         timeFormatter.dateFormat = "HH:mm:ss"
         
         // Set the paragraph style
-        paragraphStyle.alignment = NSTextAlignment.Center
+        paragraphStyle.alignment = NSTextAlignment.center
         
         // Load the defauts
         loadFromDefaults()
@@ -107,7 +107,7 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
         loadFromDefaults()
     }
     
-    private func loadFromDefaults() {
+    fileprivate func loadFromDefaults() {
         // Refresh the display.
         needsDisplay = true
     }
@@ -118,8 +118,8 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
     
     override func animateOneFrame() {
         // Update the display with the current date.
-        currentDate = NSDate()
-        setNeedsDisplayInRect(bounds)
+        currentDate = Date()
+        setNeedsDisplay(bounds)
     }
     
     override func hasConfigureSheet() -> Bool {
@@ -139,23 +139,23 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
     // MARK: Drawing and Layout
     //----------------------------
     
-    override func drawRect(rect: NSRect) {
+    override func draw(_ rect: NSRect) {
         // Draw the background color.
-        super.drawRect(rect)
+        super.draw(rect)
         
         // Update the font size if necessary
         updateFontIfNecessary()
         
         // Get the strings to display
-        let hexString: String = hexTimeFormatter.stringFromDate(currentDate)
-        let timeString: String = timeFormatter.stringFromDate(currentDate)
+        let hexString: String = hexTimeFormatter.string(from: currentDate)
+        let timeString: String = timeFormatter.string(from: currentDate)
         let mainString: String = defaults.mainLabelDisplayValue == .None ? "" : (defaults.mainLabelDisplayValue == .Hex ? hexString : timeString)
         let secondaryString: String = defaults.secondaryLabelDisplayValue == .None ? "" : (defaults.secondaryLabelDisplayValue == .Hex ? hexString : timeString)
         
         // Set the colors to display
         let hexColor: NSColor = colorFromHexString(hexString)!
-        let textColor: NSColor = !defaults.inverted ? NSColor.whiteColor() : hexColor
-        let backgroundColor: NSColor = !defaults.inverted ? hexColor : NSColor.whiteColor()
+        let textColor: NSColor = !defaults.inverted ? NSColor.white : hexColor
+        let backgroundColor: NSColor = !defaults.inverted ? hexColor : NSColor.white
         
         // Draw the background
         backgroundColor.setFill()
@@ -167,7 +167,7 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
             NSParagraphStyleAttributeName: paragraphStyle,
             NSForegroundColorAttributeName: textColor
         ]
-        let mainSize: NSSize = (mainString as NSString).sizeWithAttributes(mainAttributes)
+        let mainSize: NSSize = (mainString as NSString).size(withAttributes: mainAttributes)
         let mainRect: NSRect = defaults.secondaryLabelDisplayValue != .None ?
             NSMakeRect(
                 bounds.origin.x,
@@ -180,7 +180,7 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
                 bounds.size.width,
                 mainSize.height)
         
-        (mainString as NSString).drawInRect(mainRect, withAttributes: mainAttributes)
+        (mainString as NSString).draw(in: mainRect, withAttributes: mainAttributes)
         
         // Draw the secondary Text
         let secondaryAttributes: [String: AnyObject] = [
@@ -188,7 +188,7 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
             NSParagraphStyleAttributeName: paragraphStyle,
             NSForegroundColorAttributeName: textColor
         ]
-        let secondarySize: NSSize = (secondaryString as NSString).sizeWithAttributes(secondaryAttributes)
+        let secondarySize: NSSize = (secondaryString as NSString).size(withAttributes: secondaryAttributes)
         let secondaryRect: NSRect = defaults.mainLabelDisplayValue != .None ?
             NSMakeRect(
             bounds.origin.x,
@@ -201,28 +201,28 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
                 bounds.size.width,
                 secondarySize.height)
         
-        (secondaryString as NSString).drawInRect(secondaryRect, withAttributes: secondaryAttributes)
+        (secondaryString as NSString).draw(in: secondaryRect, withAttributes: secondaryAttributes)
     }
     
-    private func updateFontIfNecessary() {
+    fileprivate func updateFontIfNecessary() {
         if mainFont.pointSize != bounds.size.height / 7.0 {
-            mainFont = NSFont.monospacedDigitSystemFontOfSize(bounds.size.height / 7.0, weight: NSFontWeightUltraLight)
-            secondaryFont = NSFont.monospacedDigitSystemFontOfSize(bounds.size.height / 21.0, weight: NSFontWeightUltraLight)
+            mainFont = NSFont.monospacedDigitSystemFont(ofSize: bounds.size.height / 7.0, weight: NSFontWeightUltraLight)
+            secondaryFont = NSFont.monospacedDigitSystemFont(ofSize: bounds.size.height / 21.0, weight: NSFontWeightUltraLight)
         }
     }
     
-    private func colorFromHexString(string: String) -> NSColor? {
+    fileprivate func colorFromHexString(_ string: String) -> NSColor? {
         var red:   CGFloat = 0.0
         var green: CGFloat = 0.0
         var blue:  CGFloat = 0.0
         var alpha: CGFloat = 1.0
         
         if string.hasPrefix("#") {
-            let index   = string.startIndex.advancedBy(1)
-            let hex     = string.substringFromIndex(index)
-            let scanner = NSScanner(string: hex)
+            let index   = string.characters.index(string.startIndex, offsetBy: 1)
+            let hex     = string.substring(from: index)
+            let scanner = Scanner(string: hex)
             var hexValue: CUnsignedLongLong = 0
-            if scanner.scanHexLongLong(&hexValue) {
+            if scanner.scanHexInt64(&hexValue) {
                 switch (hex.characters.count) {
                 case 3:
                     red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
