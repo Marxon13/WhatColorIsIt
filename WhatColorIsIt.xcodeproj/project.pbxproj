@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		434A50271D67AB4D00A22863 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 434A50251D67AB4D00A22863 /* thumbnail.png */; };
+		434A50281D67AB4D00A22863 /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 434A50261D67AB4D00A22863 /* thumbnail@2x.png */; };
 		CA0595651BB32ECE006A5DE0 /* WhatColorIsItView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595641BB32ECE006A5DE0 /* WhatColorIsItView.swift */; };
 		CA0595681BB32F12006A5DE0 /* WhatColorIsItDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595671BB32F12006A5DE0 /* WhatColorIsItDefaults.swift */; };
 		CA05956B1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595691BB32F92006A5DE0 /* WhatColorIsItConfigurationWindowController.swift */; };
@@ -18,11 +20,11 @@
 		CA59A6001BB420610000831C /* WhatColorIsItDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595671BB32F12006A5DE0 /* WhatColorIsItDefaults.swift */; };
 		CA59A6011BB420610000831C /* WhatColorIsItConfigurationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0595691BB32F92006A5DE0 /* WhatColorIsItConfigurationWindowController.swift */; };
 		CA59A6021BB420610000831C /* WhatColorIsItConfigurationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA05956A1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindow.xib */; };
-		CA59A6081BB574910000831C /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = CA59A6061BB574910000831C /* thumbnail.png */; };
-		CA59A6091BB574910000831C /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA59A6071BB574910000831C /* thumbnail@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		434A50251D67AB4D00A22863 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = thumbnail.png; path = Resources/thumbnail.png; sourceTree = SOURCE_ROOT; };
+		434A50261D67AB4D00A22863 /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thumbnail@2x.png"; path = "Resources/thumbnail@2x.png"; sourceTree = SOURCE_ROOT; };
 		CA0595561BB32D7C006A5DE0 /* WhatColorIsIt.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatColorIsIt.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA05955D1BB32D7C006A5DE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA0595641BB32ECE006A5DE0 /* WhatColorIsItView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatColorIsItView.swift; sourceTree = "<group>"; };
@@ -34,8 +36,6 @@
 		CA59A5F61BB420500000831C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA59A5F91BB420500000831C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CA59A5FB1BB420500000831C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA59A6061BB574910000831C /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
-		CA59A6071BB574910000831C /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +59,8 @@
 		CA05954C1BB32D7C006A5DE0 = {
 			isa = PBXGroup;
 			children = (
-				CA0595581BB32D7C006A5DE0 /* WhatColorIsIt */,
-				CA59A5F31BB420500000831C /* WhatColorIsItDemo */,
+				CA0595581BB32D7C006A5DE0 /* What Color Is It */,
+				CA59A5F31BB420500000831C /* What Color Is It Demo */,
 				CA0595571BB32D7C006A5DE0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,12 +74,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CA0595581BB32D7C006A5DE0 /* WhatColorIsIt */ = {
+		CA0595581BB32D7C006A5DE0 /* What Color Is It */ = {
 			isa = PBXGroup;
 			children = (
 				CA0595631BB32E34006A5DE0 /* Classes */,
 				CA05956D1BB32F9A006A5DE0 /* Resources */,
 			);
+			name = "What Color Is It";
 			path = WhatColorIsIt;
 			sourceTree = "<group>";
 		};
@@ -98,13 +99,13 @@
 			children = (
 				CA05955D1BB32D7C006A5DE0 /* Info.plist */,
 				CA05956A1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindow.xib */,
-				CA59A6061BB574910000831C /* thumbnail.png */,
-				CA59A6071BB574910000831C /* thumbnail@2x.png */,
+				434A50251D67AB4D00A22863 /* thumbnail.png */,
+				434A50261D67AB4D00A22863 /* thumbnail@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		CA59A5F31BB420500000831C /* WhatColorIsItDemo */ = {
+		CA59A5F31BB420500000831C /* What Color Is It Demo */ = {
 			isa = PBXGroup;
 			children = (
 				CA59A5F41BB420500000831C /* AppDelegate.swift */,
@@ -112,6 +113,7 @@
 				CA59A5F81BB420500000831C /* MainMenu.xib */,
 				CA59A5FB1BB420500000831C /* Info.plist */,
 			);
+			name = "What Color Is It Demo";
 			path = WhatColorIsItDemo;
 			sourceTree = "<group>";
 		};
@@ -175,7 +177,9 @@
 				TargetAttributes = {
 					CA0595551BB32D7C006A5DE0 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 3RCGQ2RRJJ;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					CA59A5F11BB420500000831C = {
 						CreatedOnToolsVersion = 7.0;
@@ -207,9 +211,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA59A6081BB574910000831C /* thumbnail.png in Resources */,
+				434A50271D67AB4D00A22863 /* thumbnail.png in Resources */,
 				CA05956C1BB32F92006A5DE0 /* WhatColorIsItConfigurationWindow.xib in Resources */,
-				CA59A6091BB574910000831C /* thumbnail@2x.png in Resources */,
+				434A50281D67AB4D00A22863 /* thumbnail@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,11 +348,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = NO;
+				DEVELOPMENT_TEAM = 3RCGQ2RRJJ;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WhatColorIsIt/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonMcQuilkin.WhatColorIsIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -361,11 +368,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = NO;
+				DEVELOPMENT_TEAM = 3RCGQ2RRJJ;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WhatColorIsIt/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonMcQuilkin.WhatColorIsIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;

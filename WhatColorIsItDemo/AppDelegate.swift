@@ -27,7 +27,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         }
     }
     
-    
     // MARK: - Private
     
     func endSheet(_ sheet: NSWindow) {
