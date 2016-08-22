@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     
     @IBOutlet weak var window: NSWindow!
     
-    let saverView: WhatColorIsItView = WhatColorIsItView()
+    var saverView: WhatColorIsItView!
     var timer: Timer?
     
     @IBAction func showConfiguration(_ sender: NSObject!) {
@@ -34,10 +34,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        saverView = WhatColorIsItView(frame: window.contentView!.bounds, isPreview: false)
         // Set the resizing mask of the screen saver
         saverView.autoresizingMask = [NSAutoresizingMaskOptions.viewWidthSizable, NSAutoresizingMaskOptions.viewHeightSizable]
         // Add the view to the window
-        saverView.frame = window.contentView!.bounds
         window.contentView!.addSubview(saverView)
         
         // Start animating the screen saver
