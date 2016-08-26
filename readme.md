@@ -1,5 +1,5 @@
 ![banner](Resources/Banner.png)
-![banner](Resources/Example.gif)
+![banner](Resources/Example.png)
 
 WhatColorIsIt
 =============
