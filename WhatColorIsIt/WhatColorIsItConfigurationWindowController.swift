@@ -2,7 +2,7 @@
 //  WhatColorIsItConfigurationWindowController.swift
 //  WhatColorIsIt
 //
-// Copyright (c) 2015 Brandon McQuilkin
+// Copyright (c) 2018 Brandon McQuilkin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,36 +24,27 @@
 
 import Cocoa
 
+/// The window controller that allows the user to configure the screen saver.
 class WhatColorIsItConfigurationWindowController: NSWindowController {
 
     //----------------------------
     // MARK: Properties
     //----------------------------
     
-    /**
-    The defaults object instantiated by the nib.
-    */
+    /// The defaults object instantiated by the nib.
     @IBOutlet weak var defaults: WhatColorIsItDefaults?
     
-    /**
-    Controls the list of objects to display in the main popup.
-    */
+    /// Controls the list of objects to display in the main popup.
     @IBOutlet weak var mainLabelArrayController: NSArrayController?
     
-    /**
-    Controls the list of objects to display in the secondary popup.
-    */
+    /// Controls the list of objects to display in the secondary popup.
     @IBOutlet weak var secondaryLabelArrayController: NSArrayController?
     
-    /**
-    The values to display in the array controllers.
-    */
-    let options: [String] = WhatColorIsItLabelDisplayValue.allValues().map {$0.rawValue}
+    /// The values to display in the array controllers.
+    @objc let options: [String] = WhatColorIsItLabelDisplayValue.allValues().map {$0.rawValue}
     
-    /**
-    Converts the value selected by the main popover button to the proper enum value, and sets it to the defaults.
-    */
-    var mainSelectionIndex: String {
+    /// Converts the value selected by the main popover button to the proper enum value, and sets it to the defaults.
+    @objc var mainSelectionIndex: String {
         get {
             if let defaults = defaults {
                 return defaults.mainLabelDisplayValue.rawValue
@@ -67,10 +58,8 @@ class WhatColorIsItConfigurationWindowController: NSWindowController {
         }
     }
     
-    /**
-    Converts the value selected by the secondary popover button to the proper enum value, and sets it to the defaults.
-    */
-    var secondarySelectionIndex: String {
+    /// Converts the value selected by the secondary popover button to the proper enum value, and sets it to the defaults.
+    @objc var secondarySelectionIndex: String {
         get {
             if let defaults = defaults {
                 return defaults.secondaryLabelDisplayValue.rawValue
@@ -99,7 +88,7 @@ class WhatColorIsItConfigurationWindowController: NSWindowController {
     @IBAction func close(_ sender: AnyObject) {
         // Close
         if let window = window {
-            window.sheetParent?.endSheet(window, returnCode: NSModalResponseOK)
+            window.sheetParent?.endSheet(window, returnCode: NSApplication.ModalResponse.OK)
         }
     }
 

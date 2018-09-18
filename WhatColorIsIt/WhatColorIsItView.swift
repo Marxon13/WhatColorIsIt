@@ -2,7 +2,7 @@
 //  WhatColorIsItView.swift
 //  WhatColorIsIt
 //
-// Copyright (c) 2016 Brandon McQuilkin
+// Copyright (c) 2018 Brandon McQuilkin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,46 +26,33 @@ import Foundation
 import Cocoa
 import ScreenSaver
 
+/// The view that displays the screen saver.
 class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
     
     //----------------------------
     // MARK: Properties
     //----------------------------
     
-    /**
-    The defaults controller.
-    */
+    /// The defaults controller.
     fileprivate let defaults: WhatColorIsItDefaults = WhatColorIsItDefaults()
     
-    /**
-    The date formatter that converts the current time to a hex string.
-    */
+    /// The date formatter that converts the current time to a hex string.
     fileprivate let hexTimeFormatter: DateFormatter = DateFormatter()
     
-    /**
-    The date formatter that converts the current time to a string.
-    */
+    /// The date formatter that converts the current time to a string.
     fileprivate let timeFormatter: DateFormatter = DateFormatter()
     
-    /**
-    The current date.
-    */
+    /// The current date.
     fileprivate var currentDate: Date = Date()
     
-    /**
-    The main font.
-    */
-    fileprivate var mainFont: NSFont = NSFont.monospacedDigitSystemFont(ofSize: 0.0, weight: NSFontWeightUltraLight)
+    /// The main font.
+    fileprivate var mainFont: NSFont = NSFont.monospacedDigitSystemFont(ofSize: 0.0, weight: NSFont.Weight.ultraLight)
     
-    /**
-    The paragraph style.
-    */
+    /// The paragraph style.
     fileprivate let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
     
-    /**
-    The secondary font.
-    */
-    fileprivate var secondaryFont: NSFont = NSFont.monospacedDigitSystemFont(ofSize: 0.0, weight: NSFontWeightUltraLight)
+    /// The secondary font.
+    fileprivate var secondaryFont: NSFont = NSFont.monospacedDigitSystemFont(ofSize: 0.0, weight: NSFont.Weight.ultraLight)
     
     //----------------------------
     // MARK: Initalization
@@ -122,11 +109,11 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
         setNeedsDisplay(bounds)
     }
     
-    override func hasConfigureSheet() -> Bool {
+    override var hasConfigureSheet: Bool {
         return true
     }
     
-    override func configureSheet() -> NSWindow? {
+    override var configureSheet: NSWindow? {
         struct Holder {
             static var controller: WhatColorIsItConfigurationWindowController = WhatColorIsItConfigurationWindowController()
         }
@@ -159,13 +146,13 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
         
         // Draw the background
         backgroundColor.setFill()
-        NSRectFill(rect)
+        rect.fill()
         
         // Draw the main text
-        let mainAttributes: [String: AnyObject] = [
-            NSFontAttributeName: mainFont,
-            NSParagraphStyleAttributeName: paragraphStyle,
-            NSForegroundColorAttributeName: textColor
+        let mainAttributes: [NSAttributedString.Key: AnyObject] = [
+            NSAttributedString.Key.font: mainFont,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+            NSAttributedString.Key.foregroundColor: textColor
         ]
         let mainSize: NSSize = (mainString as NSString).size(withAttributes: mainAttributes)
         let mainRect: NSRect = defaults.secondaryLabelDisplayValue != .None ?
@@ -183,10 +170,10 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
         (mainString as NSString).draw(in: mainRect, withAttributes: mainAttributes)
         
         // Draw the secondary Text
-        let secondaryAttributes: [String: AnyObject] = [
-            NSFontAttributeName: secondaryFont,
-            NSParagraphStyleAttributeName: paragraphStyle,
-            NSForegroundColorAttributeName: textColor
+        let secondaryAttributes: [NSAttributedString.Key: AnyObject] = [
+            NSAttributedString.Key.font: secondaryFont,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+            NSAttributedString.Key.foregroundColor: textColor
         ]
         let secondarySize: NSSize = (secondaryString as NSString).size(withAttributes: secondaryAttributes)
         let secondaryRect: NSRect = defaults.mainLabelDisplayValue != .None ?
@@ -206,8 +193,8 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
     
     fileprivate func updateFontIfNecessary() {
         if mainFont.pointSize != bounds.size.height / 7.0 {
-            mainFont = NSFont.monospacedDigitSystemFont(ofSize: bounds.size.height / 7.0, weight: NSFontWeightUltraLight)
-            secondaryFont = NSFont.monospacedDigitSystemFont(ofSize: bounds.size.height / 21.0, weight: NSFontWeightUltraLight)
+            mainFont = NSFont.monospacedDigitSystemFont(ofSize: bounds.size.height / 7.0, weight: NSFont.Weight.ultraLight)
+            secondaryFont = NSFont.monospacedDigitSystemFont(ofSize: bounds.size.height / 21.0, weight: NSFont.Weight.ultraLight)
         }
     }
     
@@ -218,12 +205,12 @@ class WhatColorIsItView: ScreenSaverView, WhatColorIsItDefaultsDelegate {
         var alpha: CGFloat = 1.0
         
         if string.hasPrefix("#") {
-            let index   = string.characters.index(string.startIndex, offsetBy: 1)
-            let hex     = string.substring(from: index)
-            let scanner = Scanner(string: hex)
+            let index   = string.index(string.startIndex, offsetBy: 1)
+            let hex     = string.suffix(from: index)
+            let scanner = Scanner(string: String(hex))
             var hexValue: CUnsignedLongLong = 0
             if scanner.scanHexInt64(&hexValue) {
-                switch (hex.characters.count) {
+                switch (hex.count) {
                 case 3:
                     red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
                     green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0

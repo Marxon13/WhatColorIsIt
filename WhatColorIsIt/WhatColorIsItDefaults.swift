@@ -2,7 +2,7 @@
 //  WhatColorIsItDefaults.swift
 //  WhatColorIsIt
 //
-// Copyright (c) 2015 Brandon McQuilkin
+// Copyright (c) 2018 Brandon McQuilkin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,8 @@
 import Cocoa
 import ScreenSaver
 
-/**
-The possible display values to display in the labels.
-*/
+
+/// The possible display values to display in the labels.
 enum WhatColorIsItLabelDisplayValue: String, RawRepresentable {
     case Hex = "Hex (#120000)"
     case Time = "Time (12:00:00)"
@@ -38,67 +37,52 @@ enum WhatColorIsItLabelDisplayValue: String, RawRepresentable {
     }
 }
 
-/**
-The delegate protocol for the defaults.
-*/
+
+/// The delegate protocol for the defaults.
 protocol WhatColorIsItDefaultsDelegate {
-    
-    /**
-    Notifies the delegate that the configuration did change.
-    */
+    /// Notifies the delegate that the configuration did change.
     func whatColorIsItDefaultsConfigurationDidChange()
 }
 
-let WhatColorIsItConfigurationDidChangeNotificationName = "WhatColorIsItConfigurationDidChangeNotification"
-let WhatColorIsItBundleIdentifier = "com.BrandonMcQuilkin.WhatColorIsIt"
+private let WhatColorIsItConfigurationDidChangeNotificationName = "WhatColorIsItConfigurationDidChangeNotification"
+private let WhatColorIsItBundleIdentifier = "com.BrandonMcQuilkin.WhatColorIsIt"
 
-let WhatColorIsItMainDisplayValueKey: String = "mainLabelDisplayValue"
-let WhatColorIsItSecondaryDisplayValueKey: String = "secondaryLabelDisplayValue"
-let WhatColorIsItInvertedKey: String = "inverted"
+private let WhatColorIsItMainDisplayValueKey: String = "mainLabelDisplayValue"
+private let WhatColorIsItSecondaryDisplayValueKey: String = "secondaryLabelDisplayValue"
+private let WhatColorIsItInvertedKey: String = "inverted"
 
+/// Stores user settings for the screen saver.
 class WhatColorIsItDefaults: NSObject {
     
     //----------------------------
     // MARK: Properties
     //----------------------------
     
-    /**
-    The defaults used to load and save the values to/from disk.
-    */
+    /// The defaults used to load and save the values to/from disk.
     fileprivate var screenSaverDefaults: ScreenSaverDefaults?
     
-    /**
-    The defaults delegate.
-    */
+    /// The defaults delegate.
     var delegate: WhatColorIsItDefaultsDelegate?
     
-    /**
-    Whether or not to save the changes.
-    */
+    /// Whether or not to save the changes.
     fileprivate var saveChanges: Bool = true
     
-    /**
-    What the main label will display on the screen.
-    */
+    /// What the main label will display on the screen.
     var mainLabelDisplayValue: WhatColorIsItLabelDisplayValue = WhatColorIsItLabelDisplayValue.Time {
         didSet {
             save()
         }
     }
     
-    /**
-    What the secondary label will display on the screen.
-    */
+    ///  What the secondary label will display on the screen.
     var secondaryLabelDisplayValue: WhatColorIsItLabelDisplayValue = WhatColorIsItLabelDisplayValue.Hex {
         didSet {
             save()
         }
     }
     
-    /**
-    Whether or not to display inverted.
-    */
-    var inverted: Bool = false {
+    /// Whether or not to display inverted.
+    @objc var inverted: Bool = false {
         didSet {
             save()
         }
@@ -126,7 +110,7 @@ class WhatColorIsItDefaults: NSObject {
     // MARK: Actions
     //----------------------------
     
-    internal func configurationDidChange(_ notification: Notification) {
+    @objc internal func configurationDidChange(_ notification: Notification) {
         // Load the values from defaults
         revert()
         // Notify the delegate
@@ -135,9 +119,7 @@ class WhatColorIsItDefaults: NSObject {
         }
     }
     
-    /**
-    Registers the default values.
-    */
+    /// Registers the default values.
     func register() {
         screenSaverDefaults?.register(defaults: [
             WhatColorIsItMainDisplayValueKey: mainLabelDisplayValue.rawValue,
@@ -146,9 +128,7 @@ class WhatColorIsItDefaults: NSObject {
             ])
     }
     
-    /**
-    Saves the current values to disk and notifies the observers.
-    */
+    /// Saves the current values to disk and notifies the observers.
     func save() {
         if saveChanges {
             // Save all parameters to defaults.
@@ -159,9 +139,7 @@ class WhatColorIsItDefaults: NSObject {
         }
     }
     
-    /**
-    Reverts the current values to the values saved on disk and notifies the observers.
-    */
+    /// Reverts the current values to the values saved on disk and notifies the observers.
     func revert() {
         saveChanges = false
         // Revert all changes to properties.
@@ -181,10 +159,9 @@ class WhatColorIsItDefaults: NSObject {
         saveChanges = true
     }
     
-    /**
-    Notifies the observers that the values changed.
-    */
+    /// Notifies the observers that the values changed.
     func notify() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: WhatColorIsItConfigurationDidChangeNotificationName), object: nil)
     }
+    
 }
