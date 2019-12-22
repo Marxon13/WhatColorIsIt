@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="WhatColorIsItConfigurationViewController" customModule="WhatColorIsItExtension" customModuleProvider="target">
+            <connections>
+                <outlet property="mainLabelDisplayPopUpButton" destination="gIg-Ls-tSM" id="gmI-1Z-2db"/>
+                <outlet property="showSecondaryLabelCheckbox" destination="35c-kV-ZM2" id="0a6-Xk-tt9"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView misplaced="YES" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="298" height="46"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gIg-Ls-tSM">
+                    <rect key="frame" x="84" y="21" width="217" height="25"/>
+                    <popUpButtonCell key="cell" type="push" title="Hex (#235954)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="T19-MK-nPf" id="bp9-Jo-cPu">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                        <menu key="menu" id="JTV-vz-4OO">
+                            <items>
+                                <menuItem title="Hex (#235954)" state="on" id="T19-MK-nPf"/>
+                                <menuItem title="Time (23:59:54)" id="roy-Lq-TXM"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="mainLabelDisplayValueChangedWithSender:" target="-2" id="nPt-jD-bpO"/>
+                    </connections>
+                </popUpButton>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hJ5-e0-jGa">
+                    <rect key="frame" x="-2" y="27" width="70" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Main label:" id="Qnj-cX-1Kx">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="35c-kV-ZM2">
+                    <rect key="frame" x="282" y="-1" width="18" height="18"/>
+                    <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" state="on" inset="2" id="56m-G5-tr3">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showSecondaryLabelChangedWithSender:" target="-2" id="WAo-p8-mRM"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KEH-mT-okp">
+                    <rect key="frame" x="-2" y="0.0" width="141" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Show secondary label:" id="pKE-Xc-uD6">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="KEH-mT-okp" firstAttribute="top" secondItem="gIg-Ls-tSM" secondAttribute="bottom" constant="8" id="1qF-Av-62N"/>
+                <constraint firstItem="hJ5-e0-jGa" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="B4L-9a-h04"/>
+                <constraint firstItem="gIg-Ls-tSM" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="DEo-Ae-mHd"/>
+                <constraint firstItem="gIg-Ls-tSM" firstAttribute="leading" secondItem="hJ5-e0-jGa" secondAttribute="trailing" constant="20" id="Dn1-Ow-UNZ"/>
+                <constraint firstAttribute="trailing" secondItem="35c-kV-ZM2" secondAttribute="trailing" id="EDv-5F-C9e"/>
+                <constraint firstItem="KEH-mT-okp" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="GHG-N3-vG1"/>
+                <constraint firstAttribute="trailing" secondItem="gIg-Ls-tSM" secondAttribute="trailing" id="KKC-02-7GY"/>
+                <constraint firstAttribute="bottom" secondItem="KEH-mT-okp" secondAttribute="bottom" id="WeX-tS-DWb"/>
+                <constraint firstItem="35c-kV-ZM2" firstAttribute="centerY" secondItem="KEH-mT-okp" secondAttribute="centerY" id="eeF-ic-dil"/>
+                <constraint firstItem="35c-kV-ZM2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KEH-mT-okp" secondAttribute="trailing" constant="20" id="iU8-KT-pxv"/>
+                <constraint firstItem="gIg-Ls-tSM" firstAttribute="centerY" secondItem="hJ5-e0-jGa" secondAttribute="centerY" id="zOo-Zu-4kQ"/>
+            </constraints>
+            <point key="canvasLocation" x="48" y="90"/>
+        </customView>
+    </objects>
+</document>
